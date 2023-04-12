@@ -1,3 +1,5 @@
+const burberryBrand = '[id="brand-burberry"]';
+
 describe('Thread Spy Test Suite', () => {
 
 
@@ -22,23 +24,36 @@ describe('Thread Spy Test Suite', () => {
 
     })
 
-    it('Should click Shop Now and search for an item', () => {
+    it.only('Should click Shop Now and search for an item', () => {
 
         cy.get('[class="button-custom btn-gold-view animated fadeInUp"]').click();
 
-        cy.wait(9000);
+        cy.wait(10000);
 
         cy.get('[placeholder="Search"]').eq(1).type('Burb');
 
         cy.wait(5000);
 
-        cy.get('[id="brand-burberry"]').invoke('val').should('contain', 'Burberry');
+        cy.get('[class="department-check-custom"]').find('[id="brandCheckbox"]', 'label').then( checkbox => {
+        cy.wrap(checkbox).find('[type="checkbox"]')
+        .first()
+        .check({force: true})
+        })
 
-        cy.get('[id="brand-burberry"]').check({force: true});
+        // cy.get('[id="category-checkbox-jumpers"]').check({force: true});
 
-        cy.get('[id="category-checkbox-jumpers"]').check({force: true});
+        cy.get('[class="brand-check-custom"]').first().then( checkbox => {
+            cy.wrap(checkbox).find('[type="checkbox"]')
+            .eq(23)
+            .check({force: true})
+            })
 
-        cy.get('[id="size-M"]').click();
+        cy.get('[class="row left-size-custom-rw"]').first().then(checkboxSize => {
+            cy.wrap(checkboxSize)
+            .find('[class="col-lg-4 col-md-6 col-sm-6 col-6 left-size-custom"]')
+            .eq(3)
+            .click();
+        })
 
         cy.wait(14000);
 
@@ -114,6 +129,8 @@ describe('Thread Spy Test Suite', () => {
         cy.get('[class="jq-toast-heading"]').should('contain', 'Error');
 
    })
+
+       
 })
 
 
