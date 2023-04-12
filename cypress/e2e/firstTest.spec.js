@@ -1,79 +1,8 @@
-const burberryBrand = '[id="brand-burberry"]';
+const { onHomePage } = require("../support/homePage");
 
 describe('Thread Spy Test Suite', () => {
 
 
-    beforeEach('Should navigate to the network website', () => {
-
-        cy.visit('/');
-    
-    })
-
-    it('Should Navigate to Website and check the dropdowns are present', () => {
-
-        cy.get('[class="logo-brand"]').should('contain', 'THREADSPY');
-
-        
-        cy.get('[id="header-section"]').then( input => {
-            cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Brands');
-            cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Clothing');
-            cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Footwear');
-            cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Accessories');
-            cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Latest');
-        })
-
-    })
-
-    it.only('Should click Shop Now and search for an item', () => {
-
-        cy.get('[class="button-custom btn-gold-view animated fadeInUp"]').click();
-
-        cy.wait(10000);
-
-        cy.get('[placeholder="Search"]').eq(1).type('Burb');
-
-        cy.wait(5000);
-
-        cy.get('[class="department-check-custom"]').find('[id="brandCheckbox"]', 'label').then( checkbox => {
-        cy.wrap(checkbox).find('[type="checkbox"]')
-        .first()
-        .check({force: true})
-        })
-
-        cy.get('[class="brand-check-custom"]').first().then( checkbox => {
-            cy.wrap(checkbox).find('[type="checkbox"]')
-            .eq(23)
-            .check({force: true})
-            })
-
-        cy.get('[class="row left-size-custom-rw"]').first().then(checkboxSize => {
-            cy.wrap(checkboxSize)
-            .find('[class="col-lg-4 col-md-6 col-sm-6 col-6 left-size-custom"]')
-            .eq(3)
-            .click();
-        })
-
-        cy.wait(14000);
-
-        cy.get('[class="brand-name"]').first().should('contain', 'Burberry');
-    
-    })
-
-    it('Should search for an item and sort product on lowest price', () => {
-
-        cy.get('[class="button-custom btn-gold-view animated fadeInUp"]').click();
-
-        cy.wait(9500);
-
-        cy.get('[placeholder="Search"]').eq(1).type('arm');
-
-        cy.get('[id="brand-armani"]').check({force: true});
-
-        cy.get('[class="nav-item nav-item-shop dropdown "]').click();
-
-        cy.get('[class="col-md-10 tickmark-set"]').eq(1).click();
-
-    })
 
     it('Should use the open search bar to find an item', () => {
 
