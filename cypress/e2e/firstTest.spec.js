@@ -40,8 +40,6 @@ describe('Thread Spy Test Suite', () => {
         .check({force: true})
         })
 
-        // cy.get('[id="category-checkbox-jumpers"]').check({force: true});
-
         cy.get('[class="brand-check-custom"]').first().then( checkbox => {
             cy.wrap(checkbox).find('[type="checkbox"]')
             .eq(23)
@@ -130,7 +128,6 @@ describe('Thread Spy Test Suite', () => {
 
    })
 
-       
 })
 
 
