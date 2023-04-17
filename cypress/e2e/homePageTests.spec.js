@@ -1,5 +1,5 @@
-import { navigateTo } from "../support/navigationPage";
-import { onHomePage } from "../support/homePage";
+import { navigateTo } from "../support/main_page_objects/navigationPage";
+import { onHomePage } from "../support/main_page_objects/homePage";
 
 describe('Home Page Tests', () => {
 

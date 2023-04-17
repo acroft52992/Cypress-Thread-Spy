@@ -20,12 +20,19 @@ export class HomePage{
 
         cy.get('[class="button-custom btn-gold-view animated fadeInUp"]').click();
 
-        cy.wait(10000);
+        cy.wait(4000);
 
     }
 
+    clickSignUp() {
 
+        cy.get('[class="dropdown dropdown-account"]').first().click();
+        
+        cy.contains('Sign In/Sign Up').click();
 
+        cy.wait(2000);
+
+    }
 }
 
 export const onHomePage = new HomePage;
