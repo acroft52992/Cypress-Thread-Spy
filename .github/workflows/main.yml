@@ -1,14 +1,12 @@
 name: Cypress Tests
 on: [push]
 jobs:
- Cypress-Test:
+ chrome:
    runs-on: ubuntu-latest
+   name: E2E Tests on Chrome
    steps:
-     - name: E2E Tests on Chrome
      - uses: actions/checkout@v3
      - uses: cypress-io/github-action@v5
        with:
          command: npx cypress run
          browser: chrome
-         
-         
