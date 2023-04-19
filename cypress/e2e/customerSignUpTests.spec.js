@@ -1,6 +1,7 @@
-import { navigateTo } from "../support/main_page_objects/navigationPage";
-import { onHomePage } from "../support/main_page_objects/homePage";
-import { onSignUpWindow } from "../support/main_page_objects/signupPage";
+import {onSignUpWindow} from "../support/pageObjects/signupPages/signupPage";            
+import { navigateTo } from "../support/pageObjects/navigationPage/navigationPage";
+import { onHomePage } from "../support/pageObjects/homePages/homePage";
+
 
 describe('Sign Up Tests', () => {
 
