@@ -1,0 +1,23 @@
+export class MemberDropDown {
+
+    clickDropDownMenuButton() {
+
+        cy.wait(5000);
+        
+        cy.get('[id="dropdownMenuButton1"]').first().click();
+    }
+
+    checkDropDownOptionsArePresent() {
+
+        cy.get('[class="dropdown-menu dropdown-menu-acc show"]').find('li').then(dropdown => {
+            cy.wrap(dropdown).find('[class="dropdown-item"]').first().should('contain', 'Members Discount Codes');
+            cy.wrap(dropdown).find('[class="dropdown-item"]').eq(1).should('contain', 'Saved Items');
+            cy.wrap(dropdown).find('[class="dropdown-item"]').eq(2).should('contain', 'Account Settings');
+            cy.wrap(dropdown).find('[class="dropdown-item"]').eq(3).should('contain', 'Sign Out');
+        })
+    }
+
+}
+
+
+export const onMemberDropDown = new MemberDropDown;

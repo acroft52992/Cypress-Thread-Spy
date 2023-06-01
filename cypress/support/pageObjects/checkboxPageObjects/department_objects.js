@@ -13,7 +13,7 @@ export class DepartmentCheckBoxObjects {
     }
 
     selectHatCheckboxAndAssertItsChecked() {
-        
+        cy.step('Select Had CheckBox and Assert it\s Checked');
         return cy.get('[id="category-checkbox-hats"]')
         .check({force: true})
         .should('be.checked');

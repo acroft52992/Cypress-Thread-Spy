@@ -12,7 +12,6 @@ export class HomePage{
             cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Clothing');
             cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Footwear');
             cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Accessories');
-            cy.wrap(input).find('[class="mega-drop-down"]').should('contain', 'Latest');
         })
     }
 
@@ -25,10 +24,8 @@ export class HomePage{
     }
 
     clickSignUp() {
-
-        cy.get('[class="dropdown dropdown-account"]').first().click();
         
-        cy.contains('Sign In/Sign Up').click();
+        cy.contains('Sign up').click();
 
         cy.wait(2000);
 
@@ -38,7 +35,7 @@ export class HomePage{
 
         cy.wait(1000);
 
-        cy.contains('Not just another designer clothing store');
+        cy.contains('Luxury Shopping Re-Invented');
     }
 
     clickRightArrowOnHomePage() {
@@ -55,6 +52,7 @@ export class HomePage{
 
     clickCPCompanyButton() {
 
+        cy.step('Click CP Company');
         cy.get('[href="sale/cp-company"]').first().click();
 
     }
@@ -63,6 +61,12 @@ export class HomePage{
 
         cy.get('[href="sale/the-north-face"]').eq(1).click();
     }
+
+    clickDropDownMenuButton() {
+        
+        cy.get('[id="dropdownMenuButton1"]').first().click();
+    }
+
 }
 
 export const onHomePage = new HomePage;

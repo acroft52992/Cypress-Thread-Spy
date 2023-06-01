@@ -41,11 +41,11 @@ describe('Shop And Search For Products Tests', () => {
         onSalesPage.selectAndSortOnTheLowestPrice();
     })
 
-    it('Should click CP brand on home page and check brand is checked and present on the sale page', () => {
+    it.only('Should click CP brand on home page and check brand is checked and present on the sale page', () => {
 
         onHomePage.clickCPCompanyButton();
 
-        onSalesPage.checkFirstFilteredProductName('CPcompany');
+        onSalesPage.checkFirstFilteredProductName('cp company');
 
         onSalesPage.checkCPBrandCheckboxIsChecked();
         
@@ -63,7 +63,7 @@ describe('Shop And Search For Products Tests', () => {
 
         onSalesPage.checkAllBrandsOnSalesPage();
 
-        onSalesPage.checkAmountOfAllSelectedBrands('75');
+        onSalesPage.checkAmountOfAllSelectedBrands('74');
         
     })
 

@@ -21,4 +21,7 @@ import './commands'
 // require('./commands')
 
 import 'cypress-plugin-api'
+import 'cypress-plugin-steps'
+
+
 

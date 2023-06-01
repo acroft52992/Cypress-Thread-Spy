@@ -1,63 +1,97 @@
-export class SignUpPage {
+const { faker } = require( '@faker-js/faker' );
 
-    enterFirstName(firstName) {
+// faker.seed(123)
 
-        cy.get('[name="name"]').first().type(firstName);
+const user = {
+
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    randomPassword: faker.internet.password(),
+}
+
+
+export class SignUpPage
+{
+
+signUpWithDetails() {
+
+        cy.get( '[name="name"]' ).first().type(user.firstName);
+        cy.get( '[name="last_name"]' ).first().type(user.lastName);
+        cy.get( '[name="email"]' ).first().type(user.email);
+        cy.get( '[id="password"]' ).type(user.randomPassword);
+        cy.get( '[id="confirm-password"]' ).type( user.randomPassword);
+        cy.contains( "Create Account" ).click();
     }
 
-    enterSecondName(secondName) {
 
-        cy.get('[name="last_name"]').first().type(secondName);
+    checkPasswordMissingException ()
+    {
+        cy.get( '[id="jq-toast-item-0"]' )
+            .eq( 0 )
+            .should( "contain", "The password field is required." );
     }
 
-    enterEmailAddress(emailAddress) {
-
-        cy.get('[name="email"]').first().type(emailAddress);
+    checkConfirmPasswordMissingException ()
+    {
+        cy.get( '[id="jq-toast-item-0"]' )
+            .eq( 1 )
+            .should( "contain", "The confirm password field is required." );
     }
 
-    selectCreateAccount() {
-
-        cy.contains('Create Account').click();
+    clickSignUp ()
+    {
+        cy.contains( "Sign up" ).click();
     }
 
-    checkPasswordMissingException() {
-
-        cy.get('[id="jq-toast-item-0"]').eq(0).should('contain', 'The password field is required.');
+    clickLogin ()
+    {
+        cy.step( "Click Login" );
+        cy.contains( "Log in" ).click();
     }
 
-    checkConfirmPasswordMissingException() {
-
-        cy.get('[id="jq-toast-item-0"]').eq(1).should('contain', 'The confirm password field is required.');
+    enterSignInEmailAddress (emailAddress)
+    {
+        cy.step( "Enter email address" );
+        cy.get( '[name="email"]' ).eq( 1 ).type(emailAddress);
     }
 
-    clickSignIn() {
-
-        cy.get('[id="pills-login-tab"]').first().click();
+    enterSignUpPassword (password)
+    {
+        cy.step( "Enter password details" );
+        cy.get( '[id="exampleInputPassword1"]' ).type(password);
     }
 
-    enterSignInEmailAddress(emailAddress) {
-
-        cy.get('[name="email"]').eq(1).type(emailAddress);
+    selectRememberMeCheckBox ()
+    {
+        cy.step( "Select Remember me checkbox" );
+        cy.get( '[type="checkbox"]' ).eq( 1 ).check({force: true });
     }
 
-    enterSignUpPassword(password) {
-
-        cy.get('[id="exampleInputPassword1"]').type(password);
+    clickSubmitSignInDetails ()
+    {
+        cy.step( "Submit Sign In Details" );
+        cy.contains( "Submit" ).click();
     }
 
-    selectRememberMeCheckBox() {
-
-        cy.get('[type="checkbox"]').eq(1).check({force: true});
+    confirmErrorIsPresentWithInvalidLoginDetails ()
+    {
+        cy.get( '[class="jq-toast-heading"]' ).should( "contain", "Error" );
     }
 
-    clickSubmitSignInDetails() {
+    selectFavouriteBrand ()
+    {
+        cy.get( '[placeholder="Choose your Fav Brands"]' ).click();
 
-        cy.contains('Submit').click();
+        cy.get(
+            '[class="select2-results__option select2-results__option--selectable select2-results__option--highlighted"]'
+        ).click();
     }
 
-    confirmErrorIsPresentWithInvalidLoginDetails() {
-
-        cy.get('[class="jq-toast-heading"]').should('contain', 'Error');
+    checkFavouriteBrandIsSelected (brand)
+    {
+        cy.get( '[class="select2-selection__choice__display"]' ).should(
+            "contain", brand );
     }
 }
 
